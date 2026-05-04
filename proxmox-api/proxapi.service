@@ -1,0 +1,15 @@
+[Unit]
+Description=ProxAPI - Wrapper FastAPI pour Proxmox
+After=network.target
+
+[Service]
+Type=simple
+User=proxapi
+WorkingDirectory=/opt/proxapi
+EnvironmentFile=/opt/proxapi/.env
+ExecStart=/opt/proxapi/venv/bin/uvicorn app.main:app --host 0.0.0.0 --port 8080
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
